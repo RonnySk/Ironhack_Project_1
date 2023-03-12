@@ -1,4 +1,8 @@
-let imgCar;
+let imgMap;
+let imgCarLeft;
+let imgCarRight;
+let imgCarUp;
+let imgCarDown;
 let imgPoliceCar;
 let buildings;   
 let car;
@@ -6,14 +10,19 @@ let policeCars = [];
 let colliding = false;
 
 function preload(){
-    imgCar = loadImage('/images/car.jpg');
-    imgPoliceCar = loadImage('/images/policeCar.jpg')
+    imgMap = loadImage('/images/telaBase.png')
+    imgCarLeft = loadImage('images/carLeft.png')
+    imgCarRight = loadImage('/images/carRight.png');
+    imgCarUp = loadImage('/images/carUp.png');
+    imgCarDown = loadImage('/images/carDown.png');
+    
+    imgPoliceCar = loadImage('/images/policeCarLeft.png')
 }
 
 function setup(){
     createCanvas(1000, 650);
     car = new Car();
-    policeCars = [new PoliceCar()]
+    // policeCars = [new PoliceCar()]
     buildings = [
         new Building(60, 60, 300, 50),
         new Building(420, 60, 345, 160),
@@ -31,13 +40,17 @@ function setup(){
 
 function draw(){
     background(50);
+    buildings.forEach((building) => {
+        building.draw()
+    });
+    image(imgMap, 0,0,1000, 650)
+    car.draw(imgCarRight);
     keyPressed(); 
-    car.draw();
-    policeCars.forEach((policeCar) => {
-       policeCar.draw()
-       policeCar.update()
+    // policeCars.forEach((policeCar) => {
+    //    policeCar.draw()
+    //    policeCar.update()
        
-    })
+    // })
 
     if(frameCount === 500){
         policeCars.forEach((policeCar) => {
@@ -46,11 +59,6 @@ function draw(){
        
             })
 }
-console.log(frameCount)
-
-    buildings.forEach((building) => {
-        building.draw()
-    });
     if (policeCars.length === 5) {
       clearInterval(policeCreationInterval)
     } 

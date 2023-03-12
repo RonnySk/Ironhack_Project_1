@@ -6,7 +6,7 @@ class Car {
         this.h = 50
     }
 
-    draw(){
-     image(imgCar, this.x, this.y,this.w ,this.h,0 ,0);
+    draw(img){
+     image(img, this.x, this.y,this.w ,this.h,0 ,0);
     }
 }
