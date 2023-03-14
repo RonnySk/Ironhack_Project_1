@@ -1,4 +1,19 @@
-let imgMap;
+const startBtn = document.querySelector("#start-button");
+const gameIntro = document.querySelector(".game-intro"); 
+const gameScreen = document.querySelector(".game-screem")
+
+startBtn.onclick = () => {
+    startGame();
+}
+
+function startGame(){
+    gameIntro.style.display = "none";
+    canvas.show();
+    loop();
+}
+
+let canvas;
+// let imgMap;
 let imgCarLeft;
 let imgCarRight;
 let imgCarUp;
@@ -8,21 +23,25 @@ let buildings;
 let car;
 let policeCars = [];
 let colliding = false;
+let gameSound;
 
 function preload(){
-    imgMap = loadImage('/images/telaBase.png')
+    // imgMap = loadImage('/images/Map/telaBaseTamanhocorreto.png')
     imgCarLeft = loadImage('images/carLeft.png')
     imgCarRight = loadImage('/images/carRight.png');
     imgCarUp = loadImage('/images/carUp.png');
     imgCarDown = loadImage('/images/carDown.png');
     
     imgPoliceCar = loadImage('/images/policeCarLeft.png')
+    gameSound = loadSound("")
 }
 
 function setup(){
-    createCanvas(1000, 650);
+    canvas = createCanvas(1000, 650);
+    canvas.hide();
+    noLoop();    
     car = new Car();
-    // policeCars = [new PoliceCar()]
+    policeCars = [new PoliceCar()]
     buildings = [
         new Building(60, 60, 300, 50),
         new Building(420, 60, 345, 160),
@@ -43,23 +62,22 @@ function draw(){
     buildings.forEach((building) => {
         building.draw()
     });
-    image(imgMap, 0,0,1000, 650)
+    // image(imgMap, 0,0,1000, 650)
     car.draw(imgCarRight);
     keyPressed(); 
-    // policeCars.forEach((policeCar) => {
-    //    policeCar.draw()
-    //    policeCar.update()
+    policeCars.forEach((policeCar) => {
+       policeCar.draw()
+       policeCar.update()
        
-    // })
+    })
 
-    if(frameCount === 500){
+    if(frameCount === 6000){
         policeCars.forEach((policeCar) => {
             policeCar.randomX += 1;
             policeCar.randomY += 1;
-       
-            })
+           })
 }
-    if (policeCars.length === 5) {
+    if (policeCars.length === 8) {
       clearInterval(policeCreationInterval)
     } 
     gameOver()
@@ -69,7 +87,7 @@ function createPoliceCar () {
     let newPoliceCar = new PoliceCar();
        policeCars.push(newPoliceCar); 
 }
-const policeCreationInterval = setInterval(createPoliceCar, 2000);
+const policeCreationInterval = setInterval(createPoliceCar, 5000);
 
 function collisionDetection(rect1, rect2) {
     
@@ -86,6 +104,8 @@ function collisionDetection(rect1, rect2) {
 function gameOver(){
     policeCars.forEach((policeCar) => {
         if(collisionDetection(car, policeCar)) {
+            let restartButton = createButton('Restart')
+            restartButton.mousePressed(restartGame)
             background('black');
             fill('red');
             textSize(42);
@@ -96,4 +116,8 @@ function gameOver(){
             noLoop()
         }
     })
+}
+
+function restartGame() {
+    window.location.reload();
 }
