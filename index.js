@@ -10,6 +10,7 @@ function startGame(){
     gameIntro.style.display = "none";
     canvas.show();
     loop();
+    gameSound.play();   
 }
 
 let canvas;
@@ -32,14 +33,15 @@ function preload(){
     imgCarUp = loadImage('/images/carUp.png');
     imgCarDown = loadImage('/images/carDown.png');
     
-    imgPoliceCar = loadImage('/images/policeCarLeft.png')
-    gameSound = loadSound("")
+    imgPoliceCar = loadImage('/images/policeCarLeft.png');
+    
+    gameSound = loadSound('/sound/policeSound.mp3')
 }
 
 function setup(){
     canvas = createCanvas(1000, 650);
     canvas.hide();
-    noLoop();    
+    noLoop(); 
     car = new Car();
     policeCars = [new PoliceCar()]
     buildings = [
@@ -54,7 +56,7 @@ function setup(){
         new Building(830, 280, 110, 65),
         new Building(830, 400, 110, 65),
         new Building(830, 520, 110, 65),
-        ] 
+    ] 
 }
 
 function draw(){
@@ -104,6 +106,7 @@ function collisionDetection(rect1, rect2) {
 function gameOver(){
     policeCars.forEach((policeCar) => {
         if(collisionDetection(car, policeCar)) {
+            song.pause();
             let restartButton = createButton('Restart')
             restartButton.mousePressed(restartGame)
             background('black');
