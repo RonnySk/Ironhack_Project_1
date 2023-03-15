@@ -12,21 +12,6 @@ muteBtn.onclick = () => {
     muteGame();
 }
 
-function startGame(){
-    gameIntro.style.display = "none";
-    canvas.show();
-    loop();
-    if(mutedGame === true) {
-        gameSound.pause();
-    } else { 
-        gameSound.play();   
-    }
-}
-
-function muteGame(){
-    mutedGame = true
-}
-
 let canvas;
 // let imgMap;
 let imgCarLeft;
@@ -41,7 +26,7 @@ let colliding = false;
 let gameSound;
 
 function preload(){
-    // imgMap = loadImage('/images/Map/telaBaseTamanhocorreto.png')
+    imgMap = loadImage('/images/finalScreem.png')
     imgCarLeft = loadImage('images/carLeft.png')
     imgCarRight = loadImage('/images/carRight.png');
     imgCarUp = loadImage('/images/carUp.png');
@@ -79,7 +64,7 @@ function draw(){
     buildings.forEach((building) => {
         building.draw()
     });
-    // image(imgMap, 0,0,1000, 650)
+    image(imgMap, 0,0,1000, 650)
     car.draw(imgCarRight);
     keyPressed(); 
     policeCars.forEach((policeCar) => {
@@ -98,6 +83,21 @@ function draw(){
       clearInterval(policeCreationInterval)
     } 
     gameOver()
+}
+
+function startGame(){
+    gameIntro.style.display = "none";
+    canvas.show();
+    loop();
+    if(mutedGame === true) {
+        gameSound.pause();
+    } else { 
+        gameSound.play();   
+    }
+}
+
+function muteGame(){
+    mutedGame = true
 }
 
 function createPoliceCar () {
@@ -126,10 +126,10 @@ function gameOver(){
             background('black');
             fill('red');
             textSize(42);
-            text('Busted!', 425, 325);
+            text('BUSTED!', 405, 325);
             fill('red');
             textSize(38);
-            text(`Score: ${Math.floor(frameCount / 2)}`, 410, 430);
+            text(`Score: ${Math.floor(frameCount / 2)}`, 400, 430);
             gameSound.pause();
             noLoop()
         }
