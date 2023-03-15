@@ -13,3 +13,8 @@ body {
     align-items: center;
 }
 
+.btn {
+    display: flex;
+    flex-direction: row;
+}
+
