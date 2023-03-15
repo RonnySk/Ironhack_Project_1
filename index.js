@@ -2,7 +2,7 @@ const startBtn = document.querySelector("#start-button");
 const gameIntro = document.querySelector(".game-intro"); 
 const gameScreen = document.querySelector(".game-screem");
 const muteBtn = document.querySelector("#mute-button")
-let mutedGame = false;
+
 
 startBtn.onclick = () => {
     startGame();
@@ -12,8 +12,9 @@ muteBtn.onclick = () => {
     muteGame();
 }
 
+let mutedGame = false;
 let canvas;
-// let imgMap;
+let imgMap;
 let imgCarLeft;
 let imgCarRight;
 let imgCarUp;
@@ -60,7 +61,6 @@ function setup(){
 }
 
 function draw(){
-    background(50);
     buildings.forEach((building) => {
         building.draw()
     });
@@ -79,7 +79,7 @@ function draw(){
             policeCar.randomY += 1;
            })
 }
-    if (policeCars.length === 8) {
+    if (policeCars.length >= 9) {
       clearInterval(policeCreationInterval)
     } 
     gameOver()
@@ -94,6 +94,7 @@ function startGame(){
     } else { 
         gameSound.play();   
     }
+    console.log(gameSound.duration())
 }
 
 function muteGame(){

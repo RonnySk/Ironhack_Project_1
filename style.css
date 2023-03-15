@@ -4,6 +4,16 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: black;
+}
+
+img {
+    width: 500px;
+    height: 300px;
+}
+
+p {
+    margin-bottom: 20px;
 }
 
 .game-intro {
@@ -11,6 +21,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: #FCC40B;
 }
 
 .btn {
@@ -18,3 +29,25 @@ body {
     flex-direction: row;
 }
 
+button {
+    color: #FCC40B;
+    background-color: black;
+    border-radius: 5px;
+    border-color: #FCC40B;
+    padding: 10px 30px;
+    margin: 0 20px;
+    transition-duration: 0.3s;
+}
+
+button:hover {
+    background-color: #FCC40B;
+    color: black;
+}
+
+hr {
+    width: 400px;
+    height: 1px;
+    border-width: 0;
+    background-color: #FCC40B;
+    margin-top: 30px;
+}
