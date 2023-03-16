@@ -6,6 +6,8 @@ const muteBtn = document.querySelector("#mute-button")
 
 startBtn.onclick = () => {
     startGame();
+    policeCreationInterval = setInterval(createPoliceCar, 5000);
+
 }
 
 muteBtn.onclick = () => {
@@ -25,6 +27,7 @@ let car;
 let policeCars = [];
 let colliding = false;
 let gameSound;
+let policeCreationInterval; 
 
 function preload(){
     imgMap = loadImage('/images/finalScreem.png')
@@ -73,16 +76,17 @@ function draw(){
        
     })
 
-    if(frameCount === 6000){
+    if(frameCount === 5000){
         policeCars.forEach((policeCar) => {
             policeCar.randomX += 1;
             policeCar.randomY += 1;
            })
 }
-    if (policeCars.length >= 9) {
+    if (policeCars.length > 9) {
       clearInterval(policeCreationInterval)
     } 
     gameOver()
+    console.log(frameCount)
 }
 
 function startGame(){
@@ -92,9 +96,8 @@ function startGame(){
     if(mutedGame === true) {
         gameSound.pause();
     } else { 
-        gameSound.play();   
+        gameSound.loop();   
     }
-    console.log(gameSound.duration())
 }
 
 function muteGame(){
@@ -105,7 +108,6 @@ function createPoliceCar () {
     let newPoliceCar = new PoliceCar();
        policeCars.push(newPoliceCar); 
 }
-const policeCreationInterval = setInterval(createPoliceCar, 5000);
 
 function collisionDetection(rect1, rect2) {
     
@@ -122,7 +124,7 @@ function collisionDetection(rect1, rect2) {
 function gameOver(){
     policeCars.forEach((policeCar) => {
         if(collisionDetection(car, policeCar)) {
-            let restartButton = createButton('Restart')
+            let restartButton = createButton('RESTART')
             restartButton.mousePressed(restartGame)
             background('black');
             fill('red');

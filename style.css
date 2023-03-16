@@ -7,9 +7,13 @@ body {
     background-color: black;
 }
 
-img {
+#title-img {
     width: 500px;
     height: 300px;
+}
+
+h3 {
+    font-size: 26px;
 }
 
 p {
@@ -31,11 +35,12 @@ p {
 
 button {
     color: #FCC40B;
+    font-size: 12px;
     background-color: black;
     border-radius: 5px;
     border-color: #FCC40B;
     padding: 10px 30px;
-    margin: 0 20px;
+    margin: 10px 20px;
     transition-duration: 0.3s;
 }
 
@@ -50,4 +55,20 @@ hr {
     border-width: 0;
     background-color: #FCC40B;
     margin-top: 30px;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+
+}
+
+footer a {
+    display: flex;
+    margin: 20px 30px;
+}
+
+
+footer img {
+    width: 60px;
 }
