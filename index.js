@@ -30,15 +30,15 @@ let gameSound;
 let policeCreationInterval; 
 
 function preload(){
-    imgMap = loadImage('/images/finalScreem.png')
+    imgMap = loadImage('images/finalScreem.png')
     imgCarLeft = loadImage('images/carLeft.png')
-    imgCarRight = loadImage('/images/carRight.png');
-    imgCarUp = loadImage('/images/carUp.png');
-    imgCarDown = loadImage('/images/carDown.png');
+    imgCarRight = loadImage('images/carRight.png');
+    imgCarUp = loadImage('images/carUp.png');
+    imgCarDown = loadImage('images/carDown.png');
     
-    imgPoliceCar = loadImage('/images/policeCarLeft.png');
+    imgPoliceCar = loadImage('images/policeCarLeft.png');
     
-    gameSound = loadSound('/sound/policeSound.mp3')
+    gameSound = loadSound('sound/policeSound.mp3')
 }
 
 function setup(){
