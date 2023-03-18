@@ -132,7 +132,7 @@ function gameOver() {
       text("BUSTED!", 405, 325);
       fill("red");
       textSize(38);
-      text(`Score: ${Math.floor(frameCount / 2)}`, 400, 430);
+      text(`Score: ${Math.floor(frameCount / 2)}`, 404, 430);
       gameSound.pause();
       noLoop();
     }
